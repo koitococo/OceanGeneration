@@ -1,7 +1,8 @@
-import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, HeartTwoTone, SettingOutlined, SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Alert, Card, Typography } from 'antd';
+import { Alert, Avatar, Card, Col, Row, Typography } from 'antd';
+import Meta from 'antd/es/card/Meta';
 import React from 'react';
 
 const Admin: React.FC = () => {
@@ -10,14 +11,14 @@ const Admin: React.FC = () => {
     <PageContainer
       content={intl.formatMessage({
         id: 'pages.admin.subPage.title',
-        defaultMessage: 'This page can only be viewed by admin',
+        defaultMessage: '该页面只有在通过sudo验证权限后才能更改',
       })}
     >
       <Card>
         <Alert
           message={intl.formatMessage({
             id: 'pages.welcome.alertMessage',
-            defaultMessage: 'Faster and stronger heavy-duty components have been released.',
+            defaultMessage: 'OK',
           })}
           type="success"
           showIcon
@@ -28,13 +29,182 @@ const Admin: React.FC = () => {
           }}
         />
         <Typography.Title level={2} style={{ textAlign: 'center' }}>
-          <SmileTwoTone /> Ant Design Pro <HeartTwoTone twoToneColor="#eb2f96" /> You
+          <SmileTwoTone /> 数据库页面
         </Typography.Title>
+        <Row gutter={16}>
+          <Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col>
+          <Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col><Col span={6}><Card cover={
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title="DataSet 1"
+              description="Ocean Generating Dataset"
+            />
+          </Card></Col>
+        </Row>
       </Card>
       <p style={{ textAlign: 'center', marginTop: 24 }}>
-        Want to add more pages? Please refer to{' '}
+        遇到调度问题？{' '}
         <a href="https://pro.ant.design/docs/block-cn" target="_blank" rel="noopener noreferrer">
-          use block
+          寻求帮助
         </a>
         。
       </p>

@@ -40,7 +40,7 @@ describe('Login Page', () => {
       />,
     );
 
-    await rootContainer.findAllByText('Ant Design');
+    await rootContainer.findAllByText('AI Sci');
 
     act(() => {
       historyRef.current?.push('/user/login');
@@ -77,15 +77,15 @@ describe('Login Page', () => {
     const passwordInput = await rootContainer.findByPlaceholderText('Password: ant.design');
 
     act(() => {
-      fireEvent.change(passwordInput, { target: { value: 'ant.design' } });
+      fireEvent.change(passwordInput, { target: { value: '123456' } });
     });
 
     await (await rootContainer.findByText('Login')).click();
 
     // 等待接口返回结果
-    await waitTime(5000);
+    await waitTime(3000);
 
-    await rootContainer.findAllByText('Ant Design Pro');
+    await rootContainer.findAllByText('AI Sci');
 
     expect(rootContainer.asFragment()).toMatchSnapshot();
 

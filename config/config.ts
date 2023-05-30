@@ -76,7 +76,7 @@ export default defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Ant Design Pro',
+  title: 'Sci AI',
   layout: {
     locale: true,
     ...defaultSettings,
@@ -150,6 +150,5 @@ export default defineConfig({
   ],
   mfsu: {
     strategy: 'normal',
-  },
-  requestRecord: {},
+  }
 });
