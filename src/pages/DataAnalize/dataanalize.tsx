@@ -3,8 +3,71 @@ import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Alert, Avatar, Card, Col, Row, Typography, Button, Checkbox, Form, Input, Select, DatePicker, InputNumber } from 'antd';
 import Meta from 'antd/es/card/Meta';
+import Table from 'antd/lib/table/Table';
 import React from 'react';
 const { RangePicker } = DatePicker;
+const dataSource = [
+  {
+    key: '1',
+    nameA: '风速',
+    valueA: 12,
+    unitA:'m/s',
+    nameB: '风向',
+    valueB: '(12.1,55.48,12.74)',
+    unitB:'vectory',
+  },
+  {
+    key: '2',
+    nameA: '浪高',
+    valueA: 12,
+    unitA:'m',
+    nameB: '浪向',
+    valueB: '(24.10,74.14,5.86)',
+    unitB:'vectory',
+  },
+  {
+    key: '3',
+    nameA: '波周期',
+    valueA: 12,
+    unitA:'s',
+    nameB: '温度',
+    valueB: 52,
+    unitB:'C',
+  },
+];
+
+const columns = [
+  {
+    title: '项1',
+    dataIndex: 'nameA',
+    key: 'nameA',
+  },
+  {
+    title: '值1',
+    dataIndex: 'valueA',
+    key: 'valueA',
+  },
+  {
+    title: '单位',
+    dataIndex: 'unitA',
+    key: 'unitA',
+  },
+  {
+    title: '项2',
+    dataIndex: 'nameB',
+    key: 'nameB',
+  },
+  {
+    title: '值2',
+    dataIndex: 'valueB',
+    key: 'valueB',
+  },
+  {
+    title: '单位',
+    dataIndex: 'unitB',
+    key: 'unitB',
+  },
+];
 
 const dataanalize: React.FC = () => {
   const intl = useIntl();
@@ -102,6 +165,11 @@ const dataanalize: React.FC = () => {
             </Form.Item>
           </Form>
         </Card>
+
+        <Card>
+          <Table dataSource={dataSource} columns={columns} />;
+        </Card>
+
         <Card>
           <Row gutter={16}>
             <Col span={6}><Card cover={
