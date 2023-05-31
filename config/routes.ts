@@ -56,7 +56,16 @@ export default [
         name: 'Anticipating',
         component: './Anticipating/anticipating',
       },
-      
+      {
+        path: '/admin/detailsimulating',
+        name: 'DetailSimulating',
+        component: './DetailSimulating/detailsimulating',
+      },
+      {
+        path: '/admin/hostlist',
+        name: 'HostList',
+        component: './HostList/hostlist',
+      },
     ],
   },
   {
