@@ -6,6 +6,8 @@ export default {
   'menu.admin.sub-page': '数据库',
   'menu.admin.Anticipating': '海洋环境要素预测',
   'menu.admin.DataAnalizing': '数据分析',
+  'menu.admin.DetailSimulating': '海洋精细结构模拟',
+  'menu.admin.HostList': '主机列表',
   'menu.login': '登录',
   'menu.register': '注册',
   'menu.register-result': '注册结果',
