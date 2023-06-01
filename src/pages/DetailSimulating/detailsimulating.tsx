@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Alert, Avatar, Card, Col, Row, Typography, Button, Checkbox, Form, Input, Select, DatePicker, InputNumber, Space, Statistic, CountdownProps } from 'antd';
 import Meta from 'antd/es/card/Meta';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './detailsimulating.css';
 import Progress from 'antd/es/progress';
 const { RangePicker } = DatePicker;
@@ -25,12 +25,45 @@ const onChange: CountdownProps['onChange'] = (val) => {
 
 const detailsimulating: React.FC = () => {
     const intl = useIntl();
-    const [isRunning, setIsRunning] = useState<boolean>(false);
-    const [percent, setPercent] = useState<number>(0);
-    // console.log(cookies);
-    const rate = isGCenabled == 'isGCenabled=true' ? 10 : 1;
+
+    // const [percent, setPercent] = useState(0);
+    // const [isRunning, setIsRunning] = useState(false);
+    // const timerRef = useRef(null);
+    // // console.log(cookies);
+    // const [rate, setRate] = useState(isGCenabled === 'isGCenabled=true' ? 12 : 1);
+    // let cenceled = false;
+    // const increase = () => {
+    //     setPercent((prevPercent: number) => {
+    //         const newPercent = parseFloat((prevPercent + Math.random() * rate).toFixed(1));
+    //         if (newPercent > 100) {
+    //             setIsRunning(false);
+    //             return 100;
+    //         }
+    //         return newPercent;
+    //     });
+    // };
+
+    // const startProgressBar = () => {
+    //     setIsRunning(true);
+    //     timerRef.current = setInterval(() => {
+    //         increase();
+    //     }, 1000 - 50 * rate);
+    // };
+
+    // const cancelProgressBar = () => {
+    //     clearInterval(timerRef.current);
+    //     setIsRunning(false);
+    // };
+    // useEffect(() => {
+    //     setRate(isGCenabled === 'isGCenabled=true' ? 12 : 1);
+    // }, [isGCenabled]);
+    const [percent, setPercent] = useState(0);
+    const [isRunning, setIsRunning] = useState(false);
+    const timerRef = useRef(null);
+    const [rate, setRate] = useState(1); // 默认速率为1
+
     const increase = () => {
-        setPercent((prevPercent: number) => {
+        setPercent((prevPercent) => {
             const newPercent = parseFloat((prevPercent + Math.random() * rate).toFixed(1));
             if (newPercent > 100) {
                 setIsRunning(false);
@@ -39,24 +72,28 @@ const detailsimulating: React.FC = () => {
             return newPercent;
         });
     };
+
     const startProgressBar = () => {
         setIsRunning(true);
-        setTimeout(() => {
+        timerRef.current = setInterval(() => {
             increase();
-            if (percent < 100) {
-                startProgressBar();
-            } else {
-                setIsRunning(false);
-                return 100;
-            }
-        }, 1000-50*rate);
+        }, 1000 - 50 * rate);
     };
 
-    function onFinish(values: any): void {
-        throw new Error('Function not implemented.');
-    }
+    const cancelProgressBar = () => {
+        clearInterval(timerRef.current);
+        setIsRunning(false);
+    };
 
-    function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
+    useEffect(() => {
+        const cookies = document.cookie.split(';');
+        const isGCenabled = cookies.find((cookie) => cookie.trim().startsWith('isGCenabled='));
+        const isEnabled = isGCenabled && isGCenabled.trim().endsWith('true');
+        const newRate = isEnabled ? 12 : 1;
+        setRate(newRate);
+    }, []);
+
+    function onFinish(values: any): void {
         throw new Error('Function not implemented.');
     }
 
@@ -90,9 +127,9 @@ const detailsimulating: React.FC = () => {
                                 placeholder="Select a model"
                                 optionFilterProp="children"
                                 style={{ maxWidth: 200, margin: '0px 5px 0px 10px' }}
-                                filterOption={(input: string, option: { label: any; }) =>
-                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                }
+                                // filterOption={(input: string, option: { label: any; }) =>
+                                //     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                // }
                                 options={[
                                     {
                                         value: 'DCLM',
@@ -121,9 +158,9 @@ const detailsimulating: React.FC = () => {
                                 placeholder="Select a person"
                                 optionFilterProp="children"
                                 style={{ maxWidth: 200, margin: '0px 5px 0px 10px' }}
-                                filterOption={(input: string, option: { label: any; }) =>
-                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                }
+                                // filterOption={(input: string, option: { label: any; }) =>
+                                //     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                // }
                                 options={[
                                     {
                                         value: 'DC1',
@@ -179,7 +216,7 @@ const detailsimulating: React.FC = () => {
                                             valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix=" "
                                         />
-                                        <Countdown title="计划关机" value={deadline} onFinish={onFinish} valueStyle={{ fontWeight: 'bold' }} />
+                                        <Countdown title="计划关机" value={deadline} valueStyle={{ fontWeight: 'bold' }} />
                                     </Col>
 
                                 </Row>
@@ -254,7 +291,7 @@ const detailsimulating: React.FC = () => {
                                             valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="/11.9 GB"
                                         />
-                                        <Countdown title="计划关机" value={deadline} onFinish={onFinish} valueStyle={{ fontWeight: 'bold' }} />
+                                        <Countdown title="计划关机" value={deadline} valueStyle={{ fontWeight: 'bold' }} />
                                     </Col>
                                 </Row>
                             </Card>
@@ -265,8 +302,11 @@ const detailsimulating: React.FC = () => {
                 <Card>
                     <Row>
                         <Progress percent={percent} />
-                        <Button onClick={startProgressBar} disabled={isRunning}>
+                        <Button onClick={startProgressBar} disabled={isRunning} type='primary'>
                             {isRunning ? 'Running...' : 'Start'}
+                        </Button>
+                        <Button onClick={cancelProgressBar} disabled={!isRunning} style={{ marginLeft: '20px' }}>
+                            Cencel
                         </Button>
                     </Row>
                 </Card>
