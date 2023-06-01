@@ -8,6 +8,8 @@ import './detailsimulating.css';
 import Progress from 'antd/es/progress';
 const { RangePicker } = DatePicker;
 const { Countdown } = Statistic;
+const cookies = document.cookie.split(";");
+const isGCenabled = cookies[0];
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
@@ -25,9 +27,11 @@ const detailsimulating: React.FC = () => {
     const intl = useIntl();
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [percent, setPercent] = useState<number>(0);
+    // console.log(cookies);
+    const rate = isGCenabled == 'isGCenabled=true' ? 10 : 1;
     const increase = () => {
         setPercent((prevPercent: number) => {
-            const newPercent = parseFloat((prevPercent + Math.random()*10).toFixed(1));
+            const newPercent = parseFloat((prevPercent + Math.random() * rate).toFixed(1));
             if (newPercent > 100) {
                 setIsRunning(false);
                 return 100;
@@ -41,11 +45,11 @@ const detailsimulating: React.FC = () => {
             increase();
             if (percent < 100) {
                 startProgressBar();
-            }else{
+            } else {
                 setIsRunning(false);
                 return 100;
             }
-        }, 500);
+        }, 1000-50*rate);
     };
 
     function onFinish(values: any): void {
@@ -156,14 +160,14 @@ const detailsimulating: React.FC = () => {
                                             title="CPU利用率"
                                             value={11.28}
                                             precision={2}
-                                            valueStyle={{ color: '#3f8600' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
                                             suffix="%"
                                         />
                                         <Statistic
                                             title="速度"
                                             value={6.52}
                                             precision={2}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="GHz"
                                         />
                                     </Col>
@@ -172,10 +176,10 @@ const detailsimulating: React.FC = () => {
                                             title="进程"
                                             value={269}
                                             precision={0}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix=" "
                                         />
-                                        <Countdown title="计划关机" value={deadline} onFinish={onFinish} valueStyle={{fontWeight: 'bold'}}/>
+                                        <Countdown title="计划关机" value={deadline} onFinish={onFinish} valueStyle={{ fontWeight: 'bold' }} />
                                     </Col>
 
                                 </Row>
@@ -192,14 +196,14 @@ const detailsimulating: React.FC = () => {
                                             title="内存用量"
                                             value={10.72}
                                             precision={2}
-                                            valueStyle={{ color: '#3f8600' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
                                             suffix="GB"
                                         />
                                         <Statistic
                                             title="分页缓冲池"
                                             value={1.5}
                                             precision={2}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="GB"
                                         />
                                     </Col>
@@ -208,14 +212,14 @@ const detailsimulating: React.FC = () => {
                                             title="可用内存"
                                             value={12.9}
                                             precision={2}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="GB"
                                         />
                                         <Statistic
                                             title="非分页缓冲池"
                                             value={855}
                                             precision={0}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="MB"
                                         />
                                     </Col>
@@ -231,14 +235,14 @@ const detailsimulating: React.FC = () => {
                                             title="GPU利用率"
                                             value={38.25}
                                             precision={2}
-                                            valueStyle={{ color: '#3f8600' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
                                             suffix="%"
                                         />
                                         <Statistic
                                             title="共享GPU内存"
                                             value={1.1}
                                             precision={2}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="/11.9 GB"
                                         />
                                     </Col>
@@ -247,10 +251,10 @@ const detailsimulating: React.FC = () => {
                                             title="GPU内存"
                                             value={1.1}
                                             precision={2}
-                                            valueStyle={{ color: '#111111' ,fontWeight: 'bold'}}
+                                            valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="/11.9 GB"
                                         />
-                                        <Countdown title="计划关机" value={deadline} onFinish={onFinish} valueStyle={{fontWeight: 'bold'}}/>
+                                        <Countdown title="计划关机" value={deadline} onFinish={onFinish} valueStyle={{ fontWeight: 'bold' }} />
                                     </Col>
                                 </Row>
                             </Card>
