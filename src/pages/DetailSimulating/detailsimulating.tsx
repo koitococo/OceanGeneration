@@ -1,7 +1,7 @@
-import { ArrowUpOutlined, ArrowDownOutlined, EditOutlined, EllipsisOutlined, HeartTwoTone, SettingOutlined, SmileTwoTone, PlusOutlined } from '@ant-design/icons';
+import { SmileTwoTone} from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Alert, Avatar, Card, Col, Row, Typography, Button, Checkbox, Form, Input, Select, DatePicker, InputNumber, Space, Statistic, CountdownProps } from 'antd';
+import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber, Statistic, CountdownProps } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import React, { useEffect, useRef, useState } from 'react';
 import './detailsimulating.css';
@@ -25,38 +25,6 @@ const onChange: CountdownProps['onChange'] = (val) => {
 
 const detailsimulating: React.FC = () => {
     const intl = useIntl();
-
-    // const [percent, setPercent] = useState(0);
-    // const [isRunning, setIsRunning] = useState(false);
-    // const timerRef = useRef(null);
-    // // console.log(cookies);
-    // const [rate, setRate] = useState(isGCenabled === 'isGCenabled=true' ? 12 : 1);
-    // let cenceled = false;
-    // const increase = () => {
-    //     setPercent((prevPercent: number) => {
-    //         const newPercent = parseFloat((prevPercent + Math.random() * rate).toFixed(1));
-    //         if (newPercent > 100) {
-    //             setIsRunning(false);
-    //             return 100;
-    //         }
-    //         return newPercent;
-    //     });
-    // };
-
-    // const startProgressBar = () => {
-    //     setIsRunning(true);
-    //     timerRef.current = setInterval(() => {
-    //         increase();
-    //     }, 1000 - 50 * rate);
-    // };
-
-    // const cancelProgressBar = () => {
-    //     clearInterval(timerRef.current);
-    //     setIsRunning(false);
-    // };
-    // useEffect(() => {
-    //     setRate(isGCenabled === 'isGCenabled=true' ? 12 : 1);
-    // }, [isGCenabled]);
     const [percent, setPercent] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const timerRef = useRef(null);
@@ -97,6 +65,10 @@ const detailsimulating: React.FC = () => {
         throw new Error('Function not implemented.');
     }
 
+    function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
+        throw new Error('Function not implemented.');
+    }
+
     return (
         <PageContainer
             content={intl.formatMessage({
@@ -110,26 +82,27 @@ const detailsimulating: React.FC = () => {
                 </Typography.Title>
                 <Card>
                     <Form
-                        name="detailsimulating"
-                        labelCol={{ span: 4 }}
-                        wrapperCol={{ span: 20 }}
-                        style={{ maxWidth: 800 }}
+                        name="basic"
+                        labelCol={{ span: 8 }}
+                        wrapperCol={{ span: 16 }}
+                        style={{ maxWidth: 600 }}
+                        initialValues={{ remember: true }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
                         autoComplete="off"
                     >
                         <Form.Item
                             label="Model:"
                             name="model"
                             rules={[{ required: true, message: 'Model Required' }]}
-                            style={{ display: 'inline-block', width: '40%' }}
                         >
                             <Select
                                 showSearch
                                 placeholder="Select a model"
                                 optionFilterProp="children"
-                                style={{ maxWidth: 200, margin: '0px 5px 0px 10px' }}
-                                // filterOption={(input: string, option: { label: any; }) =>
-                                //     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                // }
+                                filterOption={(input, option) =>
+                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                }
                                 options={[
                                     {
                                         value: 'DCLM',
@@ -151,16 +124,14 @@ const detailsimulating: React.FC = () => {
                             label="Datasets"
                             name="datasets"
                             rules={[{ required: true, message: 'DataSets Required' }]}
-                            style={{ display: 'inline-block', width: '40%' }}
                         >
                             <Select
                                 showSearch
                                 placeholder="Select a person"
                                 optionFilterProp="children"
-                                style={{ maxWidth: 200, margin: '0px 5px 0px 10px' }}
-                                // filterOption={(input: string, option: { label: any; }) =>
-                                //     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                // }
+                                filterOption={(input, option) =>
+                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                }
                                 options={[
                                     {
                                         value: 'DC1',
@@ -178,13 +149,39 @@ const detailsimulating: React.FC = () => {
                             />
                         </Form.Item>
 
-                        <Form.Item wrapperCol={{ span: 20 }}>
+                        <Form.Item label="Date:"
+                            name="date"
+                            rules={[{ required: true, message: 'Date Required' }]}>
+                            <RangePicker showTime />
+                        </Form.Item>
+
+                        <Form.Item label="Location:"
+                            name="location"
+                            rules={[{ required: true, message: 'Date Required' }]}>
+                            <InputNumber<string>
+                                style={{ width: 160, marginRight: '10px' }}
+                                defaultValue="71.245"
+                                min="0"
+                                max="90"
+                                step="0.000001"
+                                stringMode
+                            />
+                            <InputNumber<string>
+                                style={{ width: 160 }}
+                                defaultValue="82.198"
+                                min="0"
+                                max="180"
+                                step="0.000001"
+                                stringMode
+                            />
+                        </Form.Item>
+
+                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit">
                                 Submit
                             </Button>
                         </Form.Item>
                     </Form>
-
                 </Card>
 
                 <Card>
@@ -202,7 +199,7 @@ const detailsimulating: React.FC = () => {
                                         />
                                         <Statistic
                                             title="速度"
-                                            value={6.52}
+                                            value={3.52}
                                             precision={2}
                                             valueStyle={{ color: '#111111', fontWeight: 'bold' }}
                                             suffix="GHz"

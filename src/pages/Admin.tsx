@@ -1,4 +1,4 @@
-import { EditOutlined, EllipsisOutlined, HeartTwoTone, SettingOutlined, SmileTwoTone } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, SmileTwoTone, PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Alert, Avatar, Card, Col, Row, Typography } from 'antd';
@@ -32,6 +32,29 @@ const Admin: React.FC = () => {
           <SmileTwoTone /> 数据库页面
         </Typography.Title>
         <Row gutter={16}>
+          {/* <Col span={6}>
+            <Card
+              style={{ width: 320, height: 340 }}
+              actions={[<PlusOutlined key="plus"  style={{ fontSize: '81px' }}/>]}
+            >
+              <Meta
+                title="Add New"
+                description="Click to add"
+              />
+            </Card>
+          </Col> */}
+
+          <Col span={6}>
+            <Card
+              style={{ width: 320, height: 340 }} // 自定义宽度和高度
+              actions={[
+                <div style={{  justifyContent: 'center', alignItems: 'center', height: '100%',flexWrap:'wrap',marginTop:'40px' }}><div style={{ fontSize: '36px' }}>Add New</div><PlusOutlined key="plus" style={{ fontSize: '48px' }} /></div>
+                // 调整文本大小
+              ]}
+            >
+            </Card>
+          </Col>
+
           <Col span={6}><Card cover={
             <img
               alt="example"

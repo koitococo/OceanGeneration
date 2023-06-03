@@ -1,7 +1,7 @@
-import { EditOutlined, EllipsisOutlined, HeartTwoTone, SettingOutlined, SmileTwoTone } from '@ant-design/icons';
+import { SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Alert, Avatar, Card, Col, Row, Typography, Button, Checkbox, Form, Input, Select, DatePicker, InputNumber } from 'antd';
+import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import React from 'react';
 const { RangePicker } = DatePicker;

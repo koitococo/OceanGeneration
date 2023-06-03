@@ -1,7 +1,7 @@
-import { EditOutlined, EllipsisOutlined, HeartTwoTone, SettingOutlined, SmileTwoTone } from '@ant-design/icons';
+import { SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Alert, Avatar, Card, Col, Row, Typography, Button, Checkbox, Form, Input, Select, DatePicker, InputNumber } from 'antd';
+import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import Table from 'antd/lib/table/Table';
 import React from 'react';
@@ -11,28 +11,28 @@ const dataSource = [
     key: '1',
     nameA: '风速',
     valueA: 12,
-    unitA:'m/s',
+    unitA: 'm/s',
     nameB: '风向',
     valueB: '(12.1,55.48,12.74)',
-    unitB:'vectory',
+    unitB: 'vectory',
   },
   {
     key: '2',
     nameA: '浪高',
     valueA: 12,
-    unitA:'m',
+    unitA: 'm',
     nameB: '浪向',
     valueB: '(24.10,74.14,5.86)',
-    unitB:'vectory',
+    unitB: 'vectory',
   },
   {
     key: '3',
     nameA: '波周期',
     valueA: 12,
-    unitA:'s',
+    unitA: 's',
     nameB: '温度',
     valueB: 52,
-    unitB:'C',
+    unitB: 'C',
   },
 ];
 
