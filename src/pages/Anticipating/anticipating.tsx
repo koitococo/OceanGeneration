@@ -39,7 +39,7 @@ const anticipating: React.FC = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="Model:"
+              label="模型选择:"
               name="model"
               rules={[{ required: true, message: 'Model Required' }]}
             >
@@ -68,7 +68,7 @@ const anticipating: React.FC = () => {
             </Form.Item>
 
             <Form.Item
-              label="Datasets"
+              label="数据集"
               name="datasets"
               rules={[{ required: true, message: 'DataSets Required' }]}
             >
@@ -96,13 +96,13 @@ const anticipating: React.FC = () => {
               />
             </Form.Item>
 
-            <Form.Item label="Date:"
+            <Form.Item label="日期:"
               name="date"
               rules={[{ required: true, message: 'Date Required' }]}>
               <RangePicker showTime />
             </Form.Item>
 
-            <Form.Item label="Location:"
+            <Form.Item label="经纬度:"
               name="location"
               rules={[{ required: true, message: 'Date Required' }]}>
               <InputNumber<string>
@@ -110,7 +110,7 @@ const anticipating: React.FC = () => {
                 defaultValue="71.245"
                 min="0"
                 max="90"
-                step="0.000001"
+                step="0.001"
                 stringMode
               />
               <InputNumber<string>
@@ -118,14 +118,14 @@ const anticipating: React.FC = () => {
                 defaultValue="82.198"
                 min="0"
                 max="180"
-                step="0.000001"
+                step="0.001"
                 stringMode
               />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <Button type="primary" htmlType="submit">
-                Submit
+                确定
               </Button>
             </Form.Item>
           </Form>

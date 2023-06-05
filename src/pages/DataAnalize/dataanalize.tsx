@@ -4,8 +4,15 @@ import { useIntl } from '@umijs/max';
 import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import Table from 'antd/lib/table/Table';
-import React from 'react';
+import React, { useState } from 'react';
+
+import GraA from '../../../datas/WindDiv/20210301-0.jpg';
+import GraB from '../../../datas/WaveTourus/20210301-0.jpg';
+import GraC from '../../../datas/WaveDiv/20210301-0.jpg';
+import GraD from '../../../datas/Temp/20210301-0.jpg';
+import { set } from 'lodash';
 const { RangePicker } = DatePicker;
+
 const dataSource = [
   {
     key: '1',
@@ -71,15 +78,24 @@ const columns = [
 
 const dataanalize: React.FC = () => {
   const intl = useIntl();
+  const [isLoad, setIsLoad] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   function onFinish(values: any): void {
-    throw new Error('Function not implemented.');
+    setIsConfirmed(true);
+  }
+  function onLoad(values: any): void {
+    setIsLoad(true);
+    setInterval(() => {
+      onFinish(values);
+    }, 1000);
   }
 
-  function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
-    throw new Error('Function not implemented.');
+  function onFinishFailed(errorInfo): void {
+    console.log('Failed:', errorInfo);
   }
 
   return (
+
     <PageContainer
       content={intl.formatMessage({
         id: 'pages.admin.subPage.title',
@@ -98,12 +114,14 @@ const dataanalize: React.FC = () => {
             style={{ maxWidth: 600 }}
             initialValues={{ remember: true }}
             onFinish={onFinish}
+            onLoad={onLoad}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
+
           >
 
             <Form.Item
-              label="Datasets"
+              label="数据集"
               name="datasets"
               rules={[{ required: true, message: 'DataSets Required' }]}
             >
@@ -131,15 +149,15 @@ const dataanalize: React.FC = () => {
               />
             </Form.Item>
 
-            <Form.Item label="Date:"
+            <Form.Item label="日期:"
               name="date"
               rules={[{ required: true, message: 'Date Required' }]}>
               <RangePicker showTime />
             </Form.Item>
 
-            <Form.Item label="Location:"
+            <Form.Item label="经纬度:"
               name="location"
-              rules={[{ required: true, message: 'Date Required' }]}>
+            >
               <InputNumber<string>
                 style={{ width: 160, marginRight: '10px' }}
                 defaultValue="71.245"
@@ -159,64 +177,64 @@ const dataanalize: React.FC = () => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
-                Submit
+              <Button type="primary" htmlType="submit" loading={isLoad}>
+                确定
               </Button>
             </Form.Item>
           </Form>
         </Card>
 
-        <Card>
+        <Card hidden={!isConfirmed}>
           <Table dataSource={dataSource} columns={columns} />;
         </Card>
 
-        <Card>
+        <Card hidden={!isConfirmed}>
           <Row gutter={16}>
             <Col span={6}><Card cover={
               <img
                 alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                src={GraA}
               />
             }>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph A"
+                title="风场图"
               />
             </Card></Col>
 
             <Col span={6}><Card cover={
               <img
                 alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                src={GraB}
               />
             }>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph B"
+                title="波周期图"
               />
             </Card></Col>
 
             <Col span={6}><Card cover={
               <img
                 alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                src={GraC}
               />
             }>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph C"
+                title="浪场图"
               />
             </Card></Col>
 
             <Col span={6}><Card cover={
               <img
                 alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                src={GraD}
               />
             }>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph D"
+                title="温度图"
               />
             </Card></Col>
           </Row>
