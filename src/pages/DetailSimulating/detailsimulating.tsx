@@ -1,4 +1,4 @@
-import { SmileTwoTone} from '@ant-design/icons';
+import { SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber, Statistic, CountdownProps } from 'antd';
@@ -6,10 +6,12 @@ import Meta from 'antd/es/card/Meta';
 import React, { useEffect, useRef, useState } from 'react';
 import './detailsimulating.css';
 import Progress from 'antd/es/progress';
+import DetailWave from '../../../datas/DetailWave.mp4';
 const { RangePicker } = DatePicker;
 const { Countdown } = Statistic;
 const cookies = document.cookie.split(";");
 const isGCenabled = cookies[0];
+
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
@@ -28,6 +30,7 @@ const detailsimulating: React.FC = () => {
     const [percent, setPercent] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const timerRef = useRef(null);
+    const [isShowVideo, setShowVideo] = useState(false);
     const [rate, setRate] = useState(1); // 默认速率为1
 
     const increase = () => {
@@ -35,6 +38,7 @@ const detailsimulating: React.FC = () => {
             const newPercent = parseFloat((prevPercent + Math.random() * rate).toFixed(1));
             if (newPercent > 100) {
                 setIsRunning(false);
+                setShowVideo(true);
                 return 100;
             }
             return newPercent;
@@ -52,6 +56,10 @@ const detailsimulating: React.FC = () => {
         clearInterval(timerRef.current);
         setIsRunning(false);
     };
+
+    // const finishProgressBar=()=>{
+    //     setShowVideo(true);
+    // }
 
     useEffect(() => {
         const cookies = document.cookie.split(';');
@@ -308,53 +316,57 @@ const detailsimulating: React.FC = () => {
                     </Row>
                 </Card>
 
-                <Card>
+                <Card hidden={!isShowVideo}>
                     <Row gutter={16}>
-                        <Col span={12}><Card cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }>
+                        <Col span={12}><Card>
+                            <div className="card-cover">
+                                <video controls id="card-video" >
+                                    <source src={DetailWave} type="video/mp4" />
+                                    您的浏览器不支持 HTML5 视频。
+                                </video>
+                            </div>
                             <Meta
                                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
                                 title="Graph A"
                             />
                         </Card></Col>
 
-                        <Col span={12}><Card cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }>
+                        <Col span={12}><Card>
+                            <div className="card-cover">
+                                <video controls id="card-video" >
+                                    <source src={DetailWave} type="video/mp4" />
+                                    您的浏览器不支持 HTML5 视频。
+                                </video>
+                            </div>
                             <Meta
                                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph B"
+                                title="Graph A"
                             />
                         </Card></Col>
 
-                        <Col span={12}><Card cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }>
+                        <Col span={12}><Card>
+                            <div className="card-cover">
+                                <video controls id="card-video" >
+                                    <source src={DetailWave} type="video/mp4" />
+                                    您的浏览器不支持 HTML5 视频。
+                                </video>
+                            </div>
                             <Meta
                                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph C"
+                                title="Graph A"
                             />
                         </Card></Col>
 
-                        <Col span={12}><Card cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }>
+                        <Col span={12}><Card>
+                            <div className="card-cover">
+                                <video controls id="card-video" >
+                                    <source src={DetailWave} type="video/mp4" />
+                                    您的浏览器不支持 HTML5 视频。
+                                </video>
+                            </div>
                             <Meta
                                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph D"
+                                title="Graph A"
                             />
                         </Card></Col>
                     </Row>
@@ -367,7 +379,7 @@ const detailsimulating: React.FC = () => {
                 </a>
                 。
             </p>
-        </PageContainer>
+        </PageContainer >
     );
 };
 
