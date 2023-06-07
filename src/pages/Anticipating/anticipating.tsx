@@ -3,12 +3,19 @@ import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber } from 'antd';
 import Meta from 'antd/es/card/Meta';
-import React from 'react';
+import React, { useState } from 'react';
+import "./anticipating.css";
+import Video1 from "../../../datas/1.mp4";
+import Video2 from "../../../datas/2.mp4";
+import Video3 from "../../../datas/3.mp4";
+
 const { RangePicker } = DatePicker;
 
 const anticipating: React.FC = () => {
+  const [isShowVideo, setShowVideo] = useState(false);
   const intl = useIntl();
   function onFinish(values: any): void {
+    setShowVideo(true);
     throw new Error('Function not implemented.');
   }
 
@@ -35,13 +42,13 @@ const anticipating: React.FC = () => {
             style={{ maxWidth: 600 }}
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            // onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
               label="模型选择:"
               name="model"
-              rules={[{ required: true, message: 'Model Required' }]}
+              // rules={[{ required: true, message: 'Model Required' }]}
             >
               <Select
                 showSearch
@@ -64,13 +71,14 @@ const anticipating: React.FC = () => {
                     label: 'Eula',
                   },
                 ]}
+                defaultValue="DCLM"
               />
             </Form.Item>
 
             <Form.Item
               label="数据集"
               name="datasets"
-              rules={[{ required: true, message: 'DataSets Required' }]}
+              // rules={[{ required: true, message: 'DataSets Required' }]}
             >
               <Select
                 showSearch
@@ -82,29 +90,42 @@ const anticipating: React.FC = () => {
                 options={[
                   {
                     value: 'DC1',
-                    label: 'Dataset 1',
+                    label: '中国渤海（北海域）',
                   },
                   {
                     value: 'DC2',
-                    label: 'Dataset 2',
+                    label: '中国黄海（总览）',
                   },
                   {
                     value: 'DC3',
-                    label: 'Dataset 3',
+                    label: '中国东海（东海域）',
+                  },
+                  {
+                    value: 'DC4',
+                    label: '中国南海（总览）',
+                  },
+                  {
+                    value: 'DC5',
+                    label: '中国南海（西海域）',
+                  },
+                  {
+                    value: 'DC6',
+                    label: '北冰洋（局部）',
                   },
                 ]}
+                defaultValue="中国黄海（总览）"
               />
             </Form.Item>
 
             <Form.Item label="日期:"
               name="date"
-              rules={[{ required: true, message: 'Date Required' }]}>
+              // rules={[{ required: true, message: 'Date Required' }]}
+              >
               <RangePicker showTime />
             </Form.Item>
 
             <Form.Item label="经纬度:"
-              name="location"
-              rules={[{ required: true, message: 'Date Required' }]}>
+              name="location">
               <InputNumber<string>
                 style={{ width: 160, marginRight: '10px' }}
                 defaultValue="71.245"
@@ -130,53 +151,44 @@ const anticipating: React.FC = () => {
             </Form.Item>
           </Form>
         </Card>
-        <Card>
+        <Card hidden={!isShowVideo}>
           <Row gutter={16}>
-            <Col span={12}><Card cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-            }>
+            <Col span={8}><Card>
+              <div className="card-cover">
+                <video id="card-video" autoPlay controls={false}>
+                  <source src={Video1} type="video/mp4" />
+                  您的浏览器不支持 HTML5 视频。
+                </video>
+              </div>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph A"
+                title="风速"
               />
             </Card></Col>
 
-            <Col span={12}><Card cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-            }>
+            <Col span={8}><Card>
+              <div className="card-cover">
+                <video id="card-video" autoPlay controls={false}>
+                  <source src={Video2} type="video/mp4" />
+                  您的浏览器不支持 HTML5 视频。
+                </video>
+              </div>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph B"
+                title="波周期"
               />
             </Card></Col>
 
-            <Col span={12}><Card cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-            }>
+            <Col span={8}><Card>
+              <div className="card-cover">
+                <video id="card-video" autoPlay controls={false}>
+                  <source src={Video3} type="video/mp4" />
+                  您的浏览器不支持 HTML5 视频。
+                </video>
+              </div>
               <Meta
                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph C"
-              />
-            </Card></Col>
-
-            <Col span={12}><Card cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-            }>
-              <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                title="Graph D"
+                title="浪高"
               />
             </Card></Col>
           </Row>

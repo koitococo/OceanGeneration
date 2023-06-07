@@ -184,11 +184,11 @@ const detailsimulating: React.FC = () => {
                             />
                         </Form.Item>
 
-                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        {/* <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit">
                                 确定
                             </Button>
-                        </Form.Item>
+                        </Form.Item> */}
                     </Form>
                 </Card>
 

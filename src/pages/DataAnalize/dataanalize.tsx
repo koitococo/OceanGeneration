@@ -135,17 +135,30 @@ const dataanalize: React.FC = () => {
                 options={[
                   {
                     value: 'DC1',
-                    label: 'Dataset 1',
+                    label: '中国渤海（北海域）',
                   },
                   {
                     value: 'DC2',
-                    label: 'Dataset 2',
+                    label: '中国黄海（总览）',
                   },
                   {
                     value: 'DC3',
-                    label: 'Dataset 3',
+                    label: '中国东海（东海域）',
+                  },
+                  {
+                    value: 'DC4',
+                    label: '中国南海（总览）',
+                  },
+                  {
+                    value: 'DC5',
+                    label: '中国南海（西海域）',
+                  },
+                  {
+                    value: 'DC6',
+                    label: '北冰洋（局部）',
                   },
                 ]}
+                
               />
             </Form.Item>
 

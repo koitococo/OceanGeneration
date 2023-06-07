@@ -287,7 +287,7 @@ const detailsimulating: React.FC = () => {
         {
             key: '6',
             HostName: 'UNIX_X64_AK556',
-            ip: '192.168.31.102',
+            ip: '192.168.31.306',
             tags: ['空闲', '已检修'],
             CPU: '12%',
             CPUCoresAll: 56,
