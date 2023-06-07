@@ -13,10 +13,14 @@ const { RangePicker } = DatePicker;
 
 const anticipating: React.FC = () => {
   const [isShowVideo, setShowVideo] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
   const intl = useIntl();
   function onFinish(values: any): void {
-    setShowVideo(true);
-    throw new Error('Function not implemented.');
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setConfirmLoading(false);
+      setShowVideo(true);
+    }, 2000);
   }
 
   function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
@@ -145,7 +149,7 @@ const anticipating: React.FC = () => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={confirmLoading}>
                 确定
               </Button>
             </Form.Item>
