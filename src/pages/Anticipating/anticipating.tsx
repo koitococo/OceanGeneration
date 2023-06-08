@@ -1,9 +1,9 @@
 import {SmileTwoTone} from '@ant-design/icons';
 import {PageContainer} from '@ant-design/pro-components';
 import {Card, Row, Typography, Button, Form, Select, DatePicker, InputNumber} from 'antd';
-import Meta from 'antd/es/card/Meta';
 import React, {useState} from 'react';
 import "./anticipating.css";
+import {Video} from "@/components/Customs/Video";
 
 const {RangePicker} = DatePicker;
 
@@ -13,37 +13,10 @@ const videos: string[] = [
   "/data/video/3.mp4",
 ];
 
-const Video: React.FC<{ shown: boolean, url: string, title: string }> = ({shown, url, title}) => {
-  console.log("debug: rendering with params: " + `${shown} ${url} ${title}`)
-  return shown ?
-    <div className={"video-container"} style={{
-      flex:"auto",
-      flexDirection:"column",
-      flexGrow:1
-    }}>
-        <Card>
-          <div className="card-cover" style={{
-            minHeight:"160px",
-            minWidth:"160px"
-          }}>
-            <video id="card-video" autoPlay={true} controls={false} muted={true} onPlay={() => {
-              console.log("video autoplay")
-            }}>
-              <source src={url} type="video/mp4"/>
-              您的浏览器不支持 HTML5 视频。
-            </video>
-          </div>
-          <Meta
-            title={title}
-          />
-        </Card>
-    </div> : <div className={"video-container"}/>
-}
-
-const anticipating: React.FC = () => {
+const Anticipating: React.FC = () => {
   const [isShowVideo, setShowVideo] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  function onFinish(values: any): void {
+  function onFinish(): void {
     setConfirmLoading(true);
     setTimeout(() => {
       setConfirmLoading(false);
@@ -190,4 +163,4 @@ const anticipating: React.FC = () => {
   );
 };
 
-export default anticipating;
+export default Anticipating;
