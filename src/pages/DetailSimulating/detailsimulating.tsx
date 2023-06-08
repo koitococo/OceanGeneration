@@ -175,7 +175,7 @@ const detailsimulating: React.FC = () => {
                                     <Col span={12}>
                                         <Statistic
                                             title="CPU利用率"
-                                            value={11.28}
+                                            value={9}
                                             precision={2}
                                             valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
                                             suffix="%"
@@ -211,7 +211,7 @@ const detailsimulating: React.FC = () => {
                                     <Col span={12}>
                                         <Statistic
                                             title="内存用量"
-                                            value={10.72}
+                                            value={6.7}
                                             precision={2}
                                             valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
                                             suffix="GB"
@@ -250,7 +250,7 @@ const detailsimulating: React.FC = () => {
                                     <Col span={12}>
                                         <Statistic
                                             title="GPU利用率"
-                                            value={38.25}
+                                            value={5.06}
                                             precision={2}
                                             valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
                                             suffix="%"
