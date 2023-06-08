@@ -159,7 +159,7 @@ const anticipating: React.FC = () => {
           <Row gutter={16}>
             <Col span={8}><Card>
               <div className="card-cover">
-                <video id="card-video" autoPlay controls={false}>
+                <video id="card-video" autoPlay={isShowVideo} controls={false}>
                   <source src={Video1} type="video/mp4" />
                   您的浏览器不支持 HTML5 视频。
                 </video>
@@ -172,7 +172,7 @@ const anticipating: React.FC = () => {
 
             <Col span={8}><Card>
               <div className="card-cover">
-                <video id="card-video" autoPlay controls={false}>
+                <video id="card-video" autoPlay={isShowVideo} controls={false}>
                   <source src={Video2} type="video/mp4" />
                   您的浏览器不支持 HTML5 视频。
                 </video>
@@ -185,7 +185,7 @@ const anticipating: React.FC = () => {
 
             <Col span={8}><Card>
               <div className="card-cover">
-                <video id="card-video" autoPlay controls={false}>
+                <video id="card-video" autoPlay={isShowVideo} controls={false}>
                   <source src={Video3} type="video/mp4" />
                   您的浏览器不支持 HTML5 视频。
                 </video>

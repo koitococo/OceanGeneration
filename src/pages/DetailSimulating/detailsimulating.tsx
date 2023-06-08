@@ -15,9 +15,7 @@ const isGCenabled = cookies[0];
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
-const onFinish: CountdownProps['onFinish'] = () => {
-    console.log('finished!');
-};
+
 
 const onChange: CountdownProps['onChange'] = (val) => {
     if (typeof val === 'number' && 4.95 * 1000 < val && val < 5 * 1000) {
@@ -32,6 +30,7 @@ const detailsimulating: React.FC = () => {
     const timerRef = useRef(null);
     const [isShowVideo, setShowVideo] = useState(false);
     const [rate, setRate] = useState(1); // 默认速率为1
+    const [confirmLoading, setConfirmLoading] = useState(false);
 
     const increase = () => {
         setPercent((prevPercent) => {
@@ -57,10 +56,6 @@ const detailsimulating: React.FC = () => {
         setIsRunning(false);
     };
 
-    // const finishProgressBar=()=>{
-    //     setShowVideo(true);
-    // }
-
     useEffect(() => {
         const cookies = document.cookie.split(';');
         const isGCenabled = cookies.find((cookie) => cookie.trim().startsWith('isGCenabled='));
@@ -68,14 +63,6 @@ const detailsimulating: React.FC = () => {
         const newRate = isEnabled ? 12 : 1;
         setRate(newRate);
     }, []);
-
-    function onFinish(values: any): void {
-        throw new Error('Function not implemented.');
-    }
-
-    function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
-        throw new Error('Function not implemented.');
-    }
 
     return (
         <PageContainer
@@ -95,8 +82,6 @@ const detailsimulating: React.FC = () => {
                         wrapperCol={{ span: 16 }}
                         style={{ maxWidth: 600 }}
                         initialValues={{ remember: true }}
-                        onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
                         autoComplete="off"
                     >
                         <Form.Item
@@ -184,11 +169,6 @@ const detailsimulating: React.FC = () => {
                             />
                         </Form.Item>
 
-                        {/* <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                            <Button type="primary" htmlType="submit">
-                                确定
-                            </Button>
-                        </Form.Item> */}
                     </Form>
                 </Card>
 
