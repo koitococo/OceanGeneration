@@ -1,13 +1,13 @@
 import { SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Card, Col, Row, Typography, Form, DatePicker, Space, Tag, Modal } from 'antd';
+import { Card, Col, Row, Typography, Form, Space, Tag, Modal } from 'antd';
 import { ColumnsType } from 'antd/es/table/InternalTable';
 import Transfer, { TransferDirection } from 'antd/es/transfer';
 import Table from 'antd/lib/table/Table';
 import React, { useState } from 'react';
-const { RangePicker } = DatePicker;
-interface DataType {
+
+type DataType = {
     key: string;
     HostName: string;
     ip: string;
@@ -23,11 +23,6 @@ interface DataType {
     RAMAll: number,
     RAMUse: number,
     GPU: string,
-}
-interface RecordType {
-    key: string;
-    title: string;
-    description: string;
 }
 const mockData = [
     {
@@ -59,7 +54,7 @@ const mockData = [
 const initialTargetKeys = mockData.filter((item) => Number(item.key) > 1).map((item) => item.key);
 
 
-const detailsimulating: React.FC = () => {
+const DetailSimulating: React.FC = () => {
 
     const intl = useIntl();
     const [open, setOpen] = useState(false);
@@ -85,9 +80,6 @@ const detailsimulating: React.FC = () => {
         console.log('direction:', direction);
         console.log('target:', e.target);
     };
-    const showModal = ({ hostName }: { hostName: string }) => {
-        setOpen(true);
-    };
 
     const handleOk = () => {
         setModalText('正在部署新的更改');
@@ -96,7 +88,7 @@ const detailsimulating: React.FC = () => {
             setOpen(false);
             setConfirmLoading(false);
         }, 2000);
-        document.cookie = "isGCenabled=true; SameSite=None; secure";
+        sessionStorage.setItem("gpuEnabled",true.toString());
     };
 
     const handleCancel = () => {
@@ -104,13 +96,6 @@ const detailsimulating: React.FC = () => {
         setOpen(false);
     };
 
-    function onFinish(values: any): void {
-        throw new Error('Function not implemented.');
-    }
-
-    function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
-        throw new Error('Function not implemented.');
-    }
     const columns: ColumnsType<DataType> = [
         {
             title: '主机名称',
@@ -191,9 +176,11 @@ const detailsimulating: React.FC = () => {
         {
             title: '操作',
             key: 'action',
-            render: (_, record) => (
+            render: () => (
                 <Space size="middle">
-                    <a onClick={showModal}>设置</a>
+                    <a onClick={()=>{
+                      setOpen(true);
+                    }}>设置</a>
                 </Space>
             ),
         },
@@ -350,5 +337,5 @@ const detailsimulating: React.FC = () => {
     );
 };
 
-export default detailsimulating;
+export default DetailSimulating;
 
