@@ -298,55 +298,16 @@ const detailsimulating: React.FC = () => {
 
                 <Card hidden={!isShowVideo}>
                     <Row gutter={16}>
-                        <Col span={12}><Card>
+                        <Col span={24}><Card>
                             <div className="card-cover">
-                                <video controls id="card-video" >
+                                <video controls={false} autoPlay={isShowVideo} id="card-video" >
                                     <source src={DetailWave} type="video/mp4" />
                                     您的浏览器不支持 HTML5 视频。
                                 </video>
                             </div>
                             <Meta
                                 avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph A"
-                            />
-                        </Card></Col>
-
-                        <Col span={12}><Card>
-                            <div className="card-cover">
-                                <video controls id="card-video" >
-                                    <source src={DetailWave} type="video/mp4" />
-                                    您的浏览器不支持 HTML5 视频。
-                                </video>
-                            </div>
-                            <Meta
-                                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph A"
-                            />
-                        </Card></Col>
-
-                        <Col span={12}><Card>
-                            <div className="card-cover">
-                                <video controls id="card-video" >
-                                    <source src={DetailWave} type="video/mp4" />
-                                    您的浏览器不支持 HTML5 视频。
-                                </video>
-                            </div>
-                            <Meta
-                                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph A"
-                            />
-                        </Card></Col>
-
-                        <Col span={12}><Card>
-                            <div className="card-cover">
-                                <video controls id="card-video" >
-                                    <source src={DetailWave} type="video/mp4" />
-                                    您的浏览器不支持 HTML5 视频。
-                                </video>
-                            </div>
-                            <Meta
-                                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                title="Graph A"
+                                title="3D 模拟图样"
                             />
                         </Card></Col>
                     </Row>
