@@ -28,12 +28,7 @@ const anticipating: React.FC = () => {
   }
 
   return (
-    <PageContainer
-      content={intl.formatMessage({
-        id: 'pages.admin.subPage.title',
-        defaultMessage: '该页面只有在通过sudo验证权限后才能更改',
-      })}
-    >
+    <PageContainer>
       <Card>
         <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '64px' }}>
           <SmileTwoTone /> 海洋模拟计算页面
@@ -165,7 +160,7 @@ const anticipating: React.FC = () => {
                 </video>
               </div>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="风速"
               />
             </Card></Col>
@@ -178,7 +173,7 @@ const anticipating: React.FC = () => {
                 </video>
               </div>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="波周期"
               />
             </Card></Col>
@@ -191,7 +186,7 @@ const anticipating: React.FC = () => {
                 </video>
               </div>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="浪高"
               />
             </Card></Col>

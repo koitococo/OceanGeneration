@@ -65,12 +65,7 @@ const detailsimulating: React.FC = () => {
     }, []);
 
     return (
-        <PageContainer
-            content={intl.formatMessage({
-                id: 'pages.admin.subPage.title',
-                defaultMessage: '该页面只有在通过sudo验证权限后才能更改',
-            })}
-        >
+        <PageContainer>
             <Card>
                 <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '64px' }}>
                     <SmileTwoTone /> 海洋精细结构模拟页面
@@ -306,7 +301,7 @@ const detailsimulating: React.FC = () => {
                                 </video>
                             </div>
                             <Meta
-                                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                                 title="3D 模拟图样"
                             />
                         </Card></Col>

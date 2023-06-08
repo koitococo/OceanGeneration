@@ -96,12 +96,7 @@ const dataanalize: React.FC = () => {
 
   return (
 
-    <PageContainer
-      content={intl.formatMessage({
-        id: 'pages.admin.subPage.title',
-        defaultMessage: '该页面只有在通过sudo验证权限后才能更改',
-      })}
-    >
+    <PageContainer>
       <Card>
         <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '64px' }}>
           <SmileTwoTone /> 数据分析页面
@@ -210,7 +205,7 @@ const dataanalize: React.FC = () => {
               />
             }>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="风场图"
               />
             </Card></Col>
@@ -222,7 +217,7 @@ const dataanalize: React.FC = () => {
               />
             }>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="波周期图"
               />
             </Card></Col>
@@ -234,7 +229,7 @@ const dataanalize: React.FC = () => {
               />
             }>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="浪场图"
               />
             </Card></Col>
@@ -246,7 +241,7 @@ const dataanalize: React.FC = () => {
               />
             }>
               <Meta
-                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
                 title="温度图"
               />
             </Card></Col>

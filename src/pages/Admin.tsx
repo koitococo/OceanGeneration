@@ -14,42 +14,42 @@ const Admin: React.FC = () => {
     {
       imageSrc: 'http://10.194.17.166/Temp/20210301-0.jpg',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国渤海（北海域）',
       description: '2023-06-01 04:21:11',
     },
     {
       imageSrc: 'http://10.194.17.166/Temp/20210601-3.jpg',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国黄海（总览）',
       description: '2023-05-30 08:42:01',
     },
     {
       imageSrc: 'http://10.194.17.166/Temp/20211201-0.jpg',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国东海（东海域）',
       description: '2023-05-29 11:01:00',
     },
     {
       imageSrc: 'http://10.194.17.166/Temp/20211201-3.jpg',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国南海（总览）',
       description: '2023-05-27 19:21:11',
     },
     {
       imageSrc: 'http://10.194.17.166/Temp/20210901-2.jpg',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国南海（西海域）',
       description: '2023-05-25 00:05:47',
     },
     {
       imageSrc: 'http://10.194.17.166/Temp/20210901-0.jpg',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '北冰洋（局部）',
       description: '2023-05-21 16:18:08',
     },
@@ -79,7 +79,7 @@ const Admin: React.FC = () => {
     const dataset = {
       imageSrc: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
-      avatarSrc: 'https://xsgames.co/randomusers/avatar.php?g=pixel',
+      avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: values.name,
       description: values.date.toISOString(),
     };
@@ -116,14 +116,7 @@ const Admin: React.FC = () => {
 
   const intl = useIntl();
   return (
-    <PageContainer
-      content={
-        intl.formatMessage({
-          id: 'pages.admin.subPage.title',
-          defaultMessage: '该页面只有在通过sudo验证权限后才能更改',
-        })
-      }
-    >
+    <PageContainer>
       <Card>
         <Alert
           message={intl.formatMessage({
