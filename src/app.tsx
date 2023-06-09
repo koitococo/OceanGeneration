@@ -1,4 +1,4 @@
-import { Footer, Question, SelectLang, AvatarDropdown, AvatarName } from '@/components';
+import { Question, SelectLang, AvatarDropdown, AvatarName } from '@/components';
 import { LinkOutlined } from '@ant-design/icons';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { SettingDrawer } from '@ant-design/pro-components';
@@ -58,9 +58,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
       },
     },
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
+    // waterMarkProps: {
+    //   content: initialState?.currentUser?.name,
+    // },
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
