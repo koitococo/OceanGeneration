@@ -1,21 +1,22 @@
-import { SmileTwoTone } from '@ant-design/icons';
-import { PageContainer } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
-import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber } from 'antd';
-import Meta from 'antd/es/card/Meta';
-import React, { useState } from 'react';
+import {SmileTwoTone} from '@ant-design/icons';
+import {PageContainer} from '@ant-design/pro-components';
+import {Card, Row, Typography, Button, Form, Select, DatePicker, InputNumber} from 'antd';
+import React, {useState} from 'react';
 import "./anticipating.css";
-import Video1 from "../../../datas/1.mp4";
-import Video2 from "../../../datas/2.mp4";
-import Video3 from "../../../datas/3.mp4";
+import {Video} from "@/components/Customs/Video";
 
-const { RangePicker } = DatePicker;
+const {RangePicker} = DatePicker;
 
-const anticipating: React.FC = () => {
+const videos: string[] = [
+  "/data/video/1.mp4",
+  "/data/video/2.mp4",
+  "/data/video/3.mp4",
+];
+
+const Anticipating: React.FC = () => {
   const [isShowVideo, setShowVideo] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const intl = useIntl();
-  function onFinish(values: any): void {
+  function onFinish(): void {
     setConfirmLoading(true);
     setTimeout(() => {
       setConfirmLoading(false);
@@ -23,23 +24,19 @@ const anticipating: React.FC = () => {
     }, 2000);
   }
 
-  function onFinishFailed(errorInfo: ValidateErrorEntity<any>): void {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <PageContainer>
       <Card>
-        <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <SmileTwoTone /> 海洋模拟计算页面
+        <Typography.Title level={2} style={{textAlign: 'center', marginBottom: '64px'}}>
+          <SmileTwoTone/> 海洋模拟计算页面
         </Typography.Title>
         <Card>
           <Form
             name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
-            initialValues={{ remember: true }}
+            labelCol={{span: 8}}
+            wrapperCol={{span: 16}}
+            style={{maxWidth: 600}}
+            initialValues={{remember: true}}
             onFinish={onFinish}
             // onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -70,7 +67,7 @@ const anticipating: React.FC = () => {
                     label: 'Eula',
                   },
                 ]}
-                defaultValue="DCLM"
+                defaultValue={"DCLM"}
               />
             </Form.Item>
 
@@ -117,16 +114,15 @@ const anticipating: React.FC = () => {
             </Form.Item>
 
             <Form.Item label="日期:"
-              name="date"
+                       name="date"
               // rules={[{ required: true, message: 'Date Required' }]}
-              >
-              <RangePicker showTime />
+            >
+              <RangePicker showTime/>
             </Form.Item>
 
-            <Form.Item label="经纬度:"
-              name="location">
+            <Form.Item label="经纬度:">
               <InputNumber<string>
-                style={{ width: 160, marginRight: '10px' }}
+                style={{width: 160, marginRight: '10px'}}
                 defaultValue="71.245"
                 min="0"
                 max="90"
@@ -134,7 +130,7 @@ const anticipating: React.FC = () => {
                 stringMode
               />
               <InputNumber<string>
-                style={{ width: 160 }}
+                style={{width: 160}}
                 defaultValue="82.198"
                 min="0"
                 max="180"
@@ -143,57 +139,20 @@ const anticipating: React.FC = () => {
               />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Form.Item wrapperCol={{offset: 8, span: 16}}>
               <Button type="primary" htmlType="submit" loading={confirmLoading}>
                 确定
               </Button>
             </Form.Item>
           </Form>
         </Card>
-        <Card hidden={!isShowVideo}>
-          <Row gutter={16}>
-            <Col span={8}><Card>
-              <div className="card-cover">
-                <video id="card-video" autoPlay={isShowVideo} controls={false}>
-                  <source src={Video1} type="video/mp4" />
-                  您的浏览器不支持 HTML5 视频。
-                </video>
-              </div>
-              <Meta
-                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
-                title="风速"
-              />
-            </Card></Col>
-
-            <Col span={8}><Card>
-              <div className="card-cover">
-                <video id="card-video" autoPlay={isShowVideo} controls={false}>
-                  <source src={Video2} type="video/mp4" />
-                  您的浏览器不支持 HTML5 视频。
-                </video>
-              </div>
-              <Meta
-                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
-                title="波周期"
-              />
-            </Card></Col>
-
-            <Col span={8}><Card>
-              <div className="card-cover">
-                <video id="card-video" autoPlay={isShowVideo} controls={false}>
-                  <source src={Video3} type="video/mp4" />
-                  您的浏览器不支持 HTML5 视频。
-                </video>
-              </div>
-              <Meta
-                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
-                title="浪高"
-              />
-            </Card></Col>
-          </Row>
-        </Card>
+        <Row gutter={16}>
+          <Video shown={isShowVideo} url={videos[0]} title={"风速"}/>
+          <Video shown={isShowVideo} url={videos[1]} title={"波周期"}/>
+          <Video shown={isShowVideo} url={videos[2]} title={"浪高"}/>
+        </Row>
       </Card>
-      <p style={{ textAlign: 'center', marginTop: 24 }}>
+      <p style={{textAlign: 'center', marginTop: 24}}>
         遇到调度问题？{' '}
         <a href="https://pro.ant.design/docs/block-cn" target="_blank" rel="noopener noreferrer">
           寻求帮助
@@ -204,4 +163,4 @@ const anticipating: React.FC = () => {
   );
 };
 
-export default anticipating;
+export default Anticipating;

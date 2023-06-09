@@ -1,36 +1,29 @@
 import { SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
-import { Avatar, Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber, Statistic, CountdownProps } from 'antd';
-import Meta from 'antd/es/card/Meta';
+import { Card, Col, Row, Typography, Button, Form, Select, DatePicker, InputNumber, Statistic, CountdownProps } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import './detailsimulating.css';
 import Progress from 'antd/es/progress';
-import DetailWave from '../../../datas/DetailWave.mp4';
+import {Video} from "@/components/Customs/Video";
 const { RangePicker } = DatePicker;
 const { Countdown } = Statistic;
-const cookies = document.cookie.split(";");
-const isGCenabled = cookies[0];
-
+const detailWave = "/data/DetailWave.mp4";
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
+// const onChange: CountdownProps['onChange'] = (val) => {
+//     if (typeof val === 'number' && 4.95 * 1000 < val && val < 5 * 1000) {
+//         console.log('changed!');
+//     }
+// };
 
-
-const onChange: CountdownProps['onChange'] = (val) => {
-    if (typeof val === 'number' && 4.95 * 1000 < val && val < 5 * 1000) {
-        console.log('changed!');
-    }
-};
-
-const detailsimulating: React.FC = () => {
-    const intl = useIntl();
+const DetailSimulating: React.FC = () => {
     const [percent, setPercent] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-    const timerRef = useRef(null);
     const [isShowVideo, setShowVideo] = useState(false);
     const [rate, setRate] = useState(1); // 默认速率为1
-    const [confirmLoading, setConfirmLoading] = useState(false);
+    let {current:timer} = useRef<NodeJS.Timer>(null);
+    // const [confirmLoading, setConfirmLoading] = useState(false);
 
     const increase = () => {
         setPercent((prevPercent) => {
@@ -46,20 +39,19 @@ const detailsimulating: React.FC = () => {
 
     const startProgressBar = () => {
         setIsRunning(true);
-        timerRef.current = setInterval(() => {
+        timer = setInterval(() => {
             increase();
         }, 1000 - 50 * rate);
     };
 
     const cancelProgressBar = () => {
-        clearInterval(timerRef.current);
+      if (timer !== null)
+          clearInterval(timer);
         setIsRunning(false);
     };
 
     useEffect(() => {
-        const cookies = document.cookie.split(';');
-        const isGCenabled = cookies.find((cookie) => cookie.trim().startsWith('isGCenabled='));
-        const isEnabled = isGCenabled && isGCenabled.trim().endsWith('true');
+        const isEnabled = Boolean(sessionStorage.getItem("gpuEnabled"))
         const newRate = isEnabled ? 12 : 1;
         setRate(newRate);
     }, []);
@@ -286,26 +278,12 @@ const detailsimulating: React.FC = () => {
                             {isRunning ? 'Running...' : 'Start'}
                         </Button>
                         <Button onClick={cancelProgressBar} disabled={!isRunning} style={{ marginLeft: '20px' }}>
-                            Cencel
+                            Cancel
                         </Button>
                     </Row>
                 </Card>
-
-                <Card hidden={!isShowVideo}>
-                    <Row gutter={16}>
-                        <Col span={24}><Card>
-                            <div className="card-cover">
-                                <video controls={false} autoPlay={isShowVideo} id="card-video" >
-                                    <source src={DetailWave} type="video/mp4" />
-                                    您的浏览器不支持 HTML5 视频。
-                                </video>
-                            </div>
-                            <Meta
-                                avatar={<Avatar src="http://10.194.17.166/Avater.jpg" />}
-                                title="3D 模拟图样"
-                            />
-                        </Card></Col>
-                    </Row>
+                <Card>
+                      <Video shown={isShowVideo} url={detailWave} title={"3D 模拟图样"}/>
                 </Card>
             </Card>
             <p style={{ textAlign: 'center', marginTop: 24 }}>
@@ -319,5 +297,5 @@ const detailsimulating: React.FC = () => {
     );
 };
 
-export default detailsimulating;
+export default DetailSimulating;
 
