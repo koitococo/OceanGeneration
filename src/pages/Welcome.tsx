@@ -114,7 +114,7 @@ const Welcome: React.FC = () => {
               color: token.colorTextHeading,
             }}
           >
-            欢迎使用 Sci AI
+            欢迎使用 AIOSci
           </div>
           <p
             style={{
@@ -126,7 +126,7 @@ const Welcome: React.FC = () => {
               width: '65%',
             }}
           >
-            Sci AI ，一款集合资源调配系统和AI训练网络实现海面模拟计算的系统
+            AIOSci ，一款集合资源调配系统和AI训练网络实现海面模拟计算的系统
           </p>
           <div
             style={{

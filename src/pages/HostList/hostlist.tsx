@@ -1,6 +1,5 @@
 import { SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
 import { Card, Col, Row, Typography, Form, Space, Tag, Modal } from 'antd';
 import { ColumnsType } from 'antd/es/table/InternalTable';
 import Transfer, { TransferDirection } from 'antd/es/transfer';
@@ -33,13 +32,13 @@ const mockData = [
     },
     {
         key: '2',
-        title: 'NVIDIA RTX 4090',
+        title: 'NVIDIA tesla K80',
         description: 'Description of Content 1',
         extraProp: 'Extra Property 1',
       },
     {
       key: '3',
-      title: 'NVIDIA Omniverse',
+      title: 'NVIDIA tesla K80',
       description: 'Description of Content 2',
       extraProp: 'Extra Property 2',
     },
@@ -51,12 +50,10 @@ const mockData = [
       },
     // 其他元素...
   ];
-const initialTargetKeys = mockData.filter((item) => Number(item.key) > 1).map((item) => item.key);
+const initialTargetKeys = mockData.filter((item) => Number(item.key) == 1).map((item) => item.key);
 
 
 const DetailSimulating: React.FC = () => {
-
-    const intl = useIntl();
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('点击配置主机使用的资源');
@@ -176,13 +173,18 @@ const DetailSimulating: React.FC = () => {
         {
             title: '操作',
             key: 'action',
-            render: () => (
-                <Space size="middle">
+            render: (_,{tags}) => {
+                const available = tags.every((tag)=>tag !== '故障' && tag !== '正在检修');
+                    return <Space size="middle">
                     <a onClick={()=>{
-                      setOpen(true);
+                        if (! available) {
+                            alert('该主机不可用');
+                        } else {
+                            setOpen(true);
+                        }
                     }}>设置</a>
                 </Space>
-            ),
+            },
         },
     ];
     const data: DataType[] = [
@@ -193,7 +195,7 @@ const DetailSimulating: React.FC = () => {
             tags: ['正在检修'],
             CPU: '1%',
             CPUCoresAll: 18,
-            CPUCoresUse: 1.2,
+            CPUCoresUse: 2,
             CPUAvg: '0.01',
             RAM: '24%',
             RAMAll: 64,
@@ -210,7 +212,7 @@ const DetailSimulating: React.FC = () => {
             tags: ['故障'],
             CPU: '80%',
             CPUCoresAll: 18,
-            CPUCoresUse: 1.2,
+            CPUCoresUse: 14,
             CPUAvg: '0.90',
             RAM: '66%',
             RAMAll: 64,
@@ -244,7 +246,7 @@ const DetailSimulating: React.FC = () => {
             tags: ['空闲', '已检修'],
             CPU: '12%',
             CPUCoresAll: 18,
-            CPUCoresUse: 1.2,
+            CPUCoresUse: 3.4,
             CPUAvg: '0.25',
             RAM: '39%',
             RAMAll: 64,
@@ -261,7 +263,7 @@ const DetailSimulating: React.FC = () => {
             tags: ['空闲', '已检修'],
             CPU: '15%',
             CPUCoresAll: 18,
-            CPUCoresUse: 1.2,
+            CPUCoresUse: 2.9,
             CPUAvg: '0.14',
             RAM: '31%',
             RAMAll: 64,
@@ -278,7 +280,7 @@ const DetailSimulating: React.FC = () => {
             tags: ['空闲', '已检修'],
             CPU: '10%',
             CPUCoresAll: 18,
-            CPUCoresUse: 1.2,
+            CPUCoresUse: 2.0,
             CPUAvg: '0.30',
             RAM: '32%',
             RAMAll: 64,
@@ -290,12 +292,7 @@ const DetailSimulating: React.FC = () => {
         },
     ];
     return (
-        <PageContainer
-            content={intl.formatMessage({
-                id: 'pages.admin.subPage.title',
-                defaultMessage: '该页面只有在通过sudo验证权限后才能更改',
-            })}
-        >
+        <PageContainer>
             <Card>
                 <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '64px' }}>
                     <SmileTwoTone /> 主机管理页面
@@ -314,7 +311,7 @@ const DetailSimulating: React.FC = () => {
                     <Form>
                         <Transfer
                             dataSource={mockData}
-                            titles={['Source', 'Target']}
+                            titles={['可用算力资源', '已启用']}
                             targetKeys={targetKeys}
                             selectedKeys={selectedKeys}
                             onChange={onChange}

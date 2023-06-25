@@ -12,42 +12,42 @@ import React, { useState } from 'react';
 const Admin: React.FC = () => {
   var [datalist, setDatalist] = useState([
     {
-      imageSrc: 'http://10.194.17.166/Temp/20210301-0.jpg',
+      imageSrc: 'http://10.194.17.166/Temp/20210301-0.png',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国渤海（北海域）',
       description: '2023-06-01 04:21:11',
     },
     {
-      imageSrc: 'http://10.194.17.166/Temp/20210601-3.jpg',
+      imageSrc: 'http://10.194.17.166/Temp/20210601-3.png',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国黄海（总览）',
       description: '2023-05-30 08:42:01',
     },
     {
-      imageSrc: 'http://10.194.17.166/Temp/20211201-0.jpg',
+      imageSrc: 'http://10.194.17.166/Temp/20211201-0.png',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国东海（东海域）',
       description: '2023-05-29 11:01:00',
     },
     {
-      imageSrc: 'http://10.194.17.166/Temp/20211201-3.jpg',
+      imageSrc: 'http://10.194.17.166/Temp/20211201-3.png',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国南海（总览）',
       description: '2023-05-27 19:21:11',
     },
     {
-      imageSrc: 'http://10.194.17.166/Temp/20210901-2.jpg',
+      imageSrc: 'http://10.194.17.166/Temp/20210901-2.png',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '中国南海（西海域）',
       description: '2023-05-25 00:05:47',
     },
     {
-      imageSrc: 'http://10.194.17.166/Temp/20210901-0.jpg',
+      imageSrc: 'http://10.194.17.166/Temp/20210901-0.png',
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: '北冰洋（局部）',
@@ -77,7 +77,7 @@ const Admin: React.FC = () => {
   const onFinish = (values: any) => {
     console.log('Success:', values);
     const dataset = {
-      imageSrc: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+      imageSrc: "http://10.194.17.166/Temp/20210901-0.png",
       actions: [<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />],
       avatarSrc: 'http://10.194.17.166/Avater.jpg',
       title: values.name,
@@ -106,11 +106,29 @@ const Admin: React.FC = () => {
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
-      if (info.file.status === 'done') {
+      // if (info.file.status === 'done') {
         message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
+      // } else if (info.file.status === 'error') {
+      //   message.error(`${info.file.name} file upload failed.`);
+      // }
+    },
+  };
+
+  const propspic2: UploadProps = {
+    name: 'file',
+    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
       }
+      // if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      // } else if (info.file.status === 'error') {
+      //   message.error(`${info.file.name} file upload failed.`);
+      // }
     },
   };
 
@@ -118,7 +136,7 @@ const Admin: React.FC = () => {
   return (
     <PageContainer>
       <Card>
-        <Alert
+        {/* <Alert
           message={intl.formatMessage({
             id: 'pages.welcome.alertMessage',
             defaultMessage: 'OK',
@@ -130,7 +148,7 @@ const Admin: React.FC = () => {
             margin: -12,
             marginBottom: 48,
           }}
-        />
+        /> */}
         <Typography.Title level={2} style={{ textAlign: 'center' }}>
           <SmileTwoTone /> 数据库页面
         </Typography.Title>
@@ -197,7 +215,7 @@ const Admin: React.FC = () => {
             name="name"
             rules={[{ required: true, message: 'Please input name!' }]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
 
           <Form.Item
@@ -251,7 +269,7 @@ const Admin: React.FC = () => {
             label="数据源:"
             name="source"
           >
-            <Button icon={<UploadOutlined />}>点击上传数据</Button>
+            <Upload {...propspic2}><Button icon={<UploadOutlined />}>点击上传数据</Button></Upload>
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

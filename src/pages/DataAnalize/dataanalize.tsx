@@ -129,6 +129,10 @@ const dataanalize: React.FC = () => {
                 }
                 options={[
                   {
+                    value: 'Add',
+                    label: '新建数据',
+                  },
+                  {
                     value: 'DC1',
                     label: '中国渤海（北海域）',
                   },
@@ -160,7 +164,7 @@ const dataanalize: React.FC = () => {
             <Form.Item label="日期:"
               name="date"
               rules={[{ required: true, message: 'Date Required' }]}>
-              <RangePicker showTime />
+              <DatePicker showTime />
             </Form.Item>
 
             <Form.Item label="经纬度:"
