@@ -23,8 +23,7 @@ export default [
       },
     ],
   },
-  
-  
+
   {
     path: '/welcome',
     name: 'welcome',
@@ -65,6 +64,11 @@ export default [
         path: '/admin/hostlist',
         name: 'HostList',
         component: './HostList/hostlist',
+      },
+      {
+        path: '/admin/modeling',
+        name: 'Modeling',
+        component: './Modeling/page',
       },
     ],
   },
